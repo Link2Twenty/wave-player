@@ -1,4 +1,4 @@
-# <wave-player>
+# < wave-player >
 
 ![ScreenShot](http://media.giphy.com/media/3oEduUPRhku9FpetlS/giphy.gif)
 
