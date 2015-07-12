@@ -21,7 +21,7 @@ If you are looking at useing other peoples custom polymer elements I am going to
 
 Put a link to wave player in your header, it should look something like.
 ```html
-<link rel="import" href="bower_components/pull-to-action/wave-player.html">
+<link rel="import" href="bower_components/wave-player/wave-player.html">
 ```
 
 
