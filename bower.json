@@ -5,7 +5,8 @@
   "description": "Polymer V1 audio player using wavesurfer.js",
   "main": "podcast-player.html",
   "keywords": [
-    "Polymer"
+    "Polymer",
+    "web-components"
   ],
   "authors": [
     "AndrewB05@gmail.com"
