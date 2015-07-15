@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "homepage": "https://github.com/Link2Twenty/wave-player",
   "description": "Polymer V1 audio player using wavesurfer.js",
-  "main": "podcast-player.html",
+  "main": "wave-player.html",
   "keywords": [
     "Polymer",
     "web-components"
