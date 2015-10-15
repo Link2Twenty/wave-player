@@ -21,7 +21,8 @@
   ],
   "dependencies": {
     "paper-elements": "PolymerElements/paper-elements#~1.0.1",
-    "iron-elements": "PolymerElements/iron-elements#~1.0.1"
+    "iron-elements": "PolymerElements/iron-elements#~1.0.1",
+    "wavesurfer.js": "wavesurfer.js"
   },
   "repository": {
      "type": "git",
