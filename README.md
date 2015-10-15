@@ -38,5 +38,5 @@ Now that you have imported it you can get to using it on your page
 ```
 
 ## Special thanks
-- Wave form visualizer - [wavesurfer.js](http://www.wavesurfer.fm/)
+- Wave form visualizer - [wavesurfer.js](http://wavesurfer-js.org/)
 - Prateek Jadhwani - [prateekjadhwani](https://github.com/prateekjadhwani)
