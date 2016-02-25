@@ -1,0 +1,22 @@
+{
+  "name": "wave-player-gh-pages",
+  "homepage": "https://github.com/Link2Twenty/wave-player",
+  "authors": [
+    "Andrew Bone <AndrewB05@gmail.com>"
+  ],
+  "description": "Demo pages for Wave player",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "wave-player": "*",
+    "iron-component-page": "PolymerElements/iron-component-page#^1.1.4"
+  }
+}

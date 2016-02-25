@@ -1,0 +1,40 @@
+{
+  "name": "wave-player",
+  "homepage": "https://github.com/Link2Twenty/wave-player",
+  "description": "Polymer V1 audio player using wavesurfer.js",
+  "main": "wave-player.html",
+  "keywords": [
+    "Polymer",
+    "web-components"
+  ],
+  "authors": [
+    "AndrewB05@gmail.com"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "paper-elements": "PolymerElements/paper-elements#^1.0.0",
+    "iron-elements": "PolymerElements/iron-elements#^1.0.0",
+    "wavesurfer.js": "wavesurfer.js#^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Link2Twenty/wave-player.git"
+  },
+  "_release": "c9c2535988",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "c9c253598807750917f8d2967994e5c4a13c8998"
+  },
+  "_source": "git://github.com/Link2Twenty/wave-player.git",
+  "_target": "*",
+  "_originalSource": "wave-player",
+  "_direct": true
+}
