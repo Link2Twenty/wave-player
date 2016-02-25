@@ -3,147 +3,169 @@
 <link rel="import" href="../paper-icon-button/paper-icon-button.html" />
 <link rel="import" href="../iron-icons/iron-icons.html" />
 <link rel="import" href="../iron-icons/av-icons.html" />
+
+<!--
+This is an element for play back of audio files
+that generates and displays a waveform.
+
+__Example__ of a native element demo
+
+    <wave-player 
+      wavecolor="#e44d26" 
+      progresscolor="#f16529" 
+      src="../mirror.mp3" 
+      coverart="../art.jpg"
+      lean="left"
+      title="Main Bold title!"
+      subtitle="Subtitle">
+    </wave-player>
+
+@element wave-player.html
+@demo demo/index.html
+-->
+
 <dom-module id="wave-player">
 	<style>
 		:host {
-			width: 100%;
+			min-width: 480px;
 			height: 150px;
 			background-color: var(--dark-primary-color);
-			position: relative;
-		}
-		.controls {
-			position: absolute;
-			height: 50px;
-			width: 100%;
-			float: left;
-			top: 0px;
-			background: var(--accent-color);
-			z-index: 20;
-		}
-		paper-fab {
-			transition: all .5s ease;
-			top: -25px;
-			z-index: 25;
-			border-radius:0;
-			position: absolute;
-		}
-		.albuminfo {
-			transition: all .5s ease;
-			bottom: 0px;
-			z-index: 20;
-			height: 150px;
-			width: 400px;
-			background-color: rgba(0,0,0,0.4);
-			position: absolute;
-			color: white;
-			font-family: 'Roboto', sans-serif;
-		}
-		.albuminfoActive {
-			bottom: 0px;
-			height: 25px;
-			width: 100%;
-		}
-		.waveContainer {
-			transition: all .5s ease;
-			background-color: var(--dark-primary-color);
-			top: 25px;
-			transform: scaleY(1.5);
-		}
-		.circleAnimation {
-			border-radius: 50%;
-			overflow: auto;
-			-moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.4);
-			box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.4);
-		}
-		.circleAnimation:active {
-			-moz-box-shadow: 0px 8px 17px 0px rgba(0,0,0,0.2);
-			box-shadow: 0px 8px 17px 0px rgba(0,0,0,0.2);
-		}
-		.playActive {
-			position: absolute;
-			top: 0px;
-			width: 100%;
-			height: 50px;
-		}
-		.waveActive {
-			top: 50px;
-			transform: scaleY(1);
 		}
 		paper-icon-button {
 			position: absolute;
 		}
-		.coverart {
-			transition: all .5s ease;
-			width: 150px; 
-			height: 150px;
-		}
-		.name {
-			transition: all .5s ease;
+		.title, .subtitle {
+			transition:all .5s ease;
+			padding:10px 10px 10px 0;
+			left:160px;
 			position: absolute;
-			font-size: 24px;
-			padding: 10px;
-			padding-left: 0;
-			left: 160px;
 		}
-		.title {
-			transition: all .5s ease;
-			position: absolute;
-			padding: 10px;
-			padding-left: 0;
-			left: 160px;
+		.subtitle {
 			bottom: 0;
 		}
-		.coverartActive {
-			width: 25px; 
-			height: 25px;
+		.controls {
+			height:50px;
+			width:100%;
+			top:0;
+			background:var(--accent-color);
+			z-index:20
 		}
-		.nameActive {
-			font-size: 19px;
-			padding: 3px;
-			padding-left: 0px;
-			left: 30px;
+		paper-fab {
+			transition:all .5s ease;
+			top:-25px;
+			z-index:25;
+			border-radius:0;
+		}
+		.albuminfo {
+			position: relative;
+			transition:all .5s ease;
+			top:-156px;
+			margin-bottom: -150px;
+			z-index:20;
+			height:150px;
+			width:400px;
+			background-color:rgba(0,0,0,.4);
+			color:#fff;
+			font-family:Roboto,sans-serif;
+		}
+		.albuminfoActive {
+			top:-25;
+			height:25px;
+			width:100%;
+			margin-bottom: -19px;
+		}
+		.waveContainer {
+			top: -31px;
+			transition:all .5s ease;
+			background-color:var(--dark-primary-color);
+			transform:scaleY(1.5)
+		} 
+		.circleAnimation {
+			border-radius:50%;
+			overflow:auto;
+			-moz-box-shadow:0 2px 5px 0 rgba(0,0,0,.4);
+			box-shadow:0 2px 5px 0 rgba(0,0,0,.4)
+		}
+		.circleAnimation:active {
+			-moz-box-shadow:0 8px 17px 0 rgba(0,0,0,.2);
+			box-shadow:0 8px 17px 0 rgba(0,0,0,.2)
+		}
+		.playActive {
+			top:0;
+			width:100%;
+			height:50px
+		}
+		.waveActive {
+			top: 0px;
+			transform:scaleY(1)
+		}
+		.centred, .titleActive {
+			transform:scaleY(0);
 		}
 		.titleActive {
-			transform: scale(0);
+			opacity: 0;
+		}
+		#playbutton {
+			transition:all .5s ease
+		}
+		.coverart {
+			transition:all .5s ease;
+			width:150px;
+			height:150px
+		} 
+		.title {
+			font-size:24px;
+		}
+		.coverartActive {
+			width:25px;
+			height:25px
+		}
+		.nameActive {
+			font-size:19px;
+			padding:3px 3px 3px 0;
+			left:30px
 		}
 		.centred {
-			top: calc(50% - 20px);
-			left: calc(50% - 20px);
-			transform: scale(0);
-			transition: all .3s ease;
-		}
-		.middle {
-			transform: scale(1);
-		}
+			top:calc(50% - 20px);
+			left:calc(50% - 20px);
+			transition:all .3s ease
+		} 
+		.left,.middle,.right {
+			transform:scale(1)
+		} 
 		.left {
-			left: calc(25% - 20px);
-			transform: scale(1);
-		}
+			left:calc(25% - 20px)
+		} 
 		.right {
-			left: calc(75% - 20px);
-			transform: scale(1);
+			left:calc(75% - 20px)
 		}
 		.hidden {
-			display: none;
+			display:none
+		}
+		
+		@media only screen and (max-width: 500px) {
+			.albuminfo {
+				width:100%;
+			}
 		}
 	</style>
 	<template>
 
-		<paper-fab id="playbutton" class="controlp circleAnimation" disabled icon="av:play-arrow" on-click="togglePlay"></paper-fab>
-		<div class="albuminfo">
-			<img class="coverart" src="{{coverart}}" /></img>
-			<span class="name">{{name}}</span>
-			<span class="title">{{title}}</span>
-		</div>
-		
+		<paper-fab id="playbutton" class="circleAnimation" disabled icon="av:play-arrow" on-click="togglePlay"></paper-fab>
 		<paper-material  class="controls hidden" elevation="2">
-		<paper-icon-button class="centred middle" style="color: white;" icon="av:pause" on-click="togglePlay"></paper-icon-button>
-		<paper-icon-button id="replay" class="centred" style="color: white;" icon="av:replay-30" on-click="throwBack"></paper-icon-button>
-		<paper-icon-button id="mute" class="centred" style="color: white;" icon="av:volume-up" on-click="toggleMute"></paper-icon-button>
+			<paper-icon-button class="centred middle" style="color: white;" icon="av:pause" on-click="togglePlay"></paper-icon-button>
+			<paper-icon-button id="replay" class="centred" style="color: white;" icon="av:replay-30" on-click="throwBack"></paper-icon-button>
+			<paper-icon-button id="mute" class="centred" style="color: white;" icon="av:volume-up" on-click="toggleMute"></paper-icon-button>
 		</paper-material>
 
-		<paper-material id="container" class="waveContainer" elevation="0">
-		</paper-material>
+
+		<paper-material id="container" class="waveContainer" elevation="0"></paper-material>
+		
+		<div class="albuminfo">
+			<img class="coverart" src="{{coverart}}" /></img>
+			<span class="title">{{title}}</span>
+			<span class="subtitle">{{subtitle}}</span>
+		</div>
 		
 		<script type="text/javascript" src="../wavesurfer.js/dist/wavesurfer.min.js" onload='document.querySelector("wave-player").updateWavesurfer();'></script>
 	</template>
@@ -153,39 +175,94 @@
 		Polymer({
 			is: 'wave-player',
 			properties: {
+				/**
+				* The source of the audio file to be played
+				*
+				* @attribute src
+				* @type String
+				* @default NULL
+				*/
 				src: {
 					type: String,
 					value: '',
 					notify: true
 				},
-				name: {
-					type: String,
-					value: '',
-					notify: true
-				},
+				/**
+				* The main (bold) title
+				*
+				* @attribute title
+				* @type String
+				* @default NULL
+				*/
 				title: {
 					type: String,
 					value: '',
 					notify: true
 				},
+				/**
+				* The smaller subtitle, for chapter heading or composer.
+				*
+				* @attribute subtitle
+				* @type String
+				* @default NULL
+				*/
+				subtitle: {
+					type: String,
+					value: '',
+					notify: true
+				},
+				/**
+				* The sourse for cover art
+				*
+				* @attribute coverart
+				* @type String
+				* @default art.jpg
+				*/
 				coverart: {
 					type: String,
 					value: 'art.jpg',
 					notify: true
 				},
+				/**
+				* container for the wave object
+				*
+				* @attribute wavesurfer
+				* @type Object
+				*/
 				wavesurfer: {
 					type: Object
 				},
+				/**
+				* Determines if the FOB is on the left or the right
+				*
+				* @attribute lean
+				* @type String
+				* @default left
+				*/
 				lean: {
 					type: String,
 					value: 'left',
 					notify: true
 				},
+				/**
+				* Color of the Wave
+				*
+				* @attribute wavecolor
+				* @type String
+				* @default #ffffff
+				*/
 				wavecolor: {
 					type: String,
 					value: '#ffffff',
 					notify: true
 				},
+				/**
+				* Color of the completed section of the wave
+				*
+				* @attribute progresscolor
+				* @type String
+				* @default #CFD8DC
+				*/
 				progresscolor: {
 					type: String,
 					value: '#CFD8DC',
@@ -204,6 +281,9 @@
 					Polymer.dom(this.root).querySelector('.albuminfo').classList.add("hidden");
 				}
 			},
+			/**
+			* Function to update classes (for activate)
+			*/
 			activateAnimation: function() {
 				var self = this;
 				var waveStyle = Polymer.dom(this.root).querySelector('.waveContainer');
@@ -213,8 +293,8 @@
 				var replayStyle = Polymer.dom(this.root).querySelector('#replay');
 				var albumStyle = Polymer.dom(this.root).querySelector('.albuminfo');
 				var coverartStyle = albumStyle.querySelector('.coverart');
-				var nameStyle = albumStyle.querySelector('.name');
-				var titleStyle = albumStyle.querySelector('.title');
+				var nameStyle = albumStyle.querySelector('.title');
+				var titleStyle = albumStyle.querySelector('.subtitle');
 				buttonStyle.setAttribute('icon', 'av:pause');
 				buttonStyle.classList.remove("circleAnimation");
 				buttonStyle.classList.add("playActive");
@@ -237,6 +317,9 @@
 					replayStyle.classList.add("left");
 				},600);
 			},
+			/**
+			* Function to update classes (for deactivate)
+			*/
 			deactivateAnimation: function() {
 				var self = this;
 				var waveStyle = Polymer.dom(this.root).querySelector('.waveContainer');
@@ -246,8 +329,8 @@
 				var replayStyle = Polymer.dom(this.root).querySelector('#replay');
 				var albumStyle = Polymer.dom(this.root).querySelector('.albuminfo');
 				var coverartStyle = albumStyle.querySelector('.coverart');
-				var nameStyle = albumStyle.querySelector('.name');
-				var titleStyle = albumStyle.querySelector('.title');
+				var nameStyle = albumStyle.querySelector('.title');
+				var titleStyle = albumStyle.querySelector('.subtitle');
 				muteStyle.classList.remove("right");
 				replayStyle.classList.remove("left");
 				setTimeout(function() {
@@ -270,6 +353,9 @@
 					waveStyle.classList.remove("waveActive");
 				},200);
 			},
+			/**
+			* Initializing wave object
+			*/
 			initWaveSurfer: function() {
 				var self = this;
 				this.wavesurfer.init({
@@ -289,10 +375,16 @@
 				});
 				this.wavesurfer.load(this.src);
 			},
+			/**
+			* Stores Object
+			*/
 			updateWavesurfer: function() {
 				this.wavesurfer = Object.create(WaveSurfer);
 				this.initWaveSurfer();
 			},
+			/**
+			* Toggle play and pause
+			*/
 			togglePlay: function(e) {
 				this.wavesurfer.playPause();
 				var iconType = this.$.playbutton.getAttribute('icon');
@@ -302,6 +394,9 @@
 					this.deactivateAnimation();
 				}
 			},
+			/**
+			* Toggle mute on and off
+			*/
 			toggleMute: function(e) {
 				var muteStyle = Polymer.dom(this.root).querySelector('#mute');
 				var iconType = muteStyle.getAttribute('icon');
@@ -312,6 +407,9 @@
 					muteStyle.setAttribute('icon', 'av:volume-up');
 				};
 			},
+			/**
+			* Jumps back 30 seconds
+			*/
 			throwBack: function(e) {
 				this.wavesurfer.skipBackward(30);
 			}
