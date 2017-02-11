@@ -28,15 +28,25 @@ Put a link to wave player in your header, it should look something like.
 
 
 Now that you have imported it you can get to using it on your page
+<!--
+```
+<custom-element-demo>
+  <template>
+    <link rel="import" href="wave-player.html">
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
 ```html
-<wave-player 
-		wavecolor="#e44d26" 
-		progresscolor="#f16529" 
-		src="mirror.mp3" 
-		lean="left"
-		name="Really long string, it's too long for one line!"
-		title="Chapter 1 - the boy who lived"
-		/>
+<wave-player
+  wavecolor="#e44d26" 
+  progresscolor="#f16529" 
+  src="http://www.bensound.org/bensound-music/bensound-buddy.mp3" 
+  lean="left"
+  name="Buddy"
+  title="Music from bensound.com (Royalty free music)"
+/>
 ```
 
 ## Special thanks
