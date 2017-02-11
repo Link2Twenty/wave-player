@@ -42,7 +42,7 @@ Now that you have imported it you can get to using it on your page
 <wave-player
   wavecolor="#e44d26" 
   progresscolor="#f16529" 
-  src="http://www.bensound.org/bensound-music/bensound-buddy.mp3" 
+  src="https://www.bensound.org/bensound-music/bensound-buddy.mp3" 
   lean="left"
   name="Buddy"
   title="Music from bensound.com (Royalty free music)"
