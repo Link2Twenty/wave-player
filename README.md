@@ -1,5 +1,7 @@
 # < wave-player >
 
+⚠️ DEPRECATED: This project is no longer actively developed ⚠️
+
 Check out the components page [HERE](http://link2twenty.github.io/wave-player)
 
 ![ScreenShot](http://media.giphy.com/media/3oEduUPRhku9FpetlS/giphy.gif)
